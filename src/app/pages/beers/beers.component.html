@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-lg-9 mx-auto">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img style="max-width: 60px;" src="{{randomBeer.image_url}}" class="img-fluid rounded-start"
+                            alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{randomBeer.name}}</h5>
+                            <p class="card-text">{{randomBeer.description}}</p>
+                            <p class="card-text">ABV: {{randomBeer.abv}}%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" (click)="getRandomBeer()">Random Beer</button>
+            <br />
+            <button type="submit" class="btn btn-primary mb-2" (click)="getNonAlcoholicRandomBeer()">Random Non-alcoholic
+                Beer</button>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-9 mx-auto">
+            <h1>Search</h1>
+            <form class="form-inline">
+                <label class="sr-only" for="inlineFormInputName2">Name</label>
+                <input type="text" [(ngModel)]="searchName" name="searchName" class="form-control mb-2 mr-sm-2"
+                    id="inlineFormInputName2" placeholder="Jane Doe">
+
+                <div class="mt-3 mb-3">
+                    <input type="radio" id="search-name" name="search-type" [(ngModel)]="searchType" value="name">
+                    <label for="search-name"> By name</label>
+                    <br>
+                    <input type="radio" id="search-description" name="search-type" [(ngModel)]="searchType"
+                        value="description">
+                    <label for="search-description">By description</label>
+                    <br>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2" (click)="getSearchResult()">Submit</button>
+            </form>
+
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-9 mx-auto">
+            <div class="card mb-3" *ngFor="let beer of lstBeerSearchedResult">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img style="max-width: 60px;" src="{{beer.image_url}}" class="img-fluid rounded-start"
+                            alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{beer.name}}</h5>
+                            <p class="card-text">{{beer.description}}</p>
+                            <p class="card-text">ABV: {{beer.abv}}%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-info" role="alert" *ngIf="lstBeerSearchedResult.length <= 0">
+                No Data Available
+            </div>
+        </div>
+    </div>
+</div>
